@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -14,7 +15,10 @@ export class HeroesComponent implements OnInit {
 
   heroes: Hero[] = [];
 
-  constructor(private heroService: HeroService) {
+  constructor(
+    private heroService: HeroService,
+    private messageService: MessageService
+  ) {
     // Reserve the constructor for minimal initialization
     // such as wiring constructor parameters to properties.
     // The constructor shouldn't do anything.
@@ -27,6 +31,7 @@ export class HeroesComponent implements OnInit {
   }
 
   onSelect(hero: Hero) {
+    this.messageService.add("HeroesComponent: hero -> " + hero.name + " selected ");
     this.selectedHero = hero;
   }
 
